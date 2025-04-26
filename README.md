@@ -7,7 +7,7 @@
 ## 📸 Vista de la Interfaz
 ![Panel principal](screenshotpanel.png)
 
-![Control del Dispositivo](screenshotpanel.png)
+![Control del Dispositivo](screenshotcontrol.png)
 
 
 
