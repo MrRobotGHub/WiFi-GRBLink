@@ -179,6 +179,14 @@ Así evitarás tener que reconfigurar tu dispositivo en LightBurn si cambia la I
 
 ---
 
+## ☕ ¿Te sirvió este proyecto?
+
+Si este sistema te ahorró cables, estrés o simplemente quieres agradecer, puedes apoyarme con una donación 💙
+
+[![Donar con PayPal](https://img.shields.io/badge/Donar-PayPal-blue.svg)](https://www.paypal.com/donate/?hosted_button_id=MKUYKUWXHZS4J)
+
+---
+
 ## 🛠️ Créditos
 
 - **ser2net** — Servicio utilizado para redirigir el tráfico TCP/IP al dispositivo USB conectado.
