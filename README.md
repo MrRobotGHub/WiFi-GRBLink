@@ -4,6 +4,13 @@
 
 ---
 
+## 📸 Vista de la Interfaz
+![Panel principal](screenshotpanel.png)
+
+![Control del Dispositivo](screenshotpanel.png)
+
+
+
 ## 📦 Contenido
 
 - **index.php** — Panel de estado del sistema
