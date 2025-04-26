@@ -87,12 +87,12 @@
 
 - Descargar el paquete directamente desde GitHub:
   ```bash
-  wget https://github.com/tu_usuario/tu_repositorio/archive/refs/heads/main.zip -O grblink.zip
+  wget https://github.com/MrRobotGHub/WiFi-GRBLink/archive/refs/heads/main.zip -O grblink.zip
   ```
 - Descomprimir el archivo:
   ```bash
   unzip grblink.zip
-  cd tu_repositorio-main
+  cd WiFi-GRBLink-main
   ```
 
 ### Opción B - Transferencia manual (WinSCP o SCP)
