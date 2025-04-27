@@ -87,7 +87,7 @@
 
 - Descargar el paquete directamente desde GitHub:
   ```bash
-  wget https://github.com/MrRobotGHub/WiFi-GRBLink/archive/refs/heads/main.zip -O grblink.zip
+  wget --content-disposition https://github.com/MrRobotGHub/WiFi-GRBLink/archive/refs/heads/main.zip -O grblink.zip
   ```
 - Descomprimir el archivo:
   ```bash
