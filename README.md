@@ -145,29 +145,22 @@ También puedes:
 
 ---
 
-## 📡 Recomendaciones de Red
+## 📡 Recomendación: Reserva la IP en tu Módem/Router
 
-- Es recomendable configurar el router para asignar una IP fija a la Raspberry Pi (IP estática mediante DHCP).
-- Alternativamente, puedes configurar una IP fija manualmente en la Raspberry Pi editando `/etc/dhcpcd.conf`:
+Para evitar que tu Raspberry Pi cambie de IP cuando el modem o router le asigne otra IP, lo mejor es reservar su dirección IP en el router.
 
-  ```bash
-  sudo nano /etc/dhcpcd.conf
-  ```
-  Añadir al final:
-  ```
-  interface wlan0
-  static ip_address=192.168.1.100/24
-  static routers=192.168.1.1
-  static domain_name_servers=192.168.1.1
-  ```
-  *(Reemplazar las IPs según tu red)*
+✅ Esto asegura que siempre puedas conectarte usando la misma IP en LightBurn y no tengas que reconfigurar nada.
 
-- Reiniciar después:
-  ```bash
-  sudo reboot
-  ```
+### ¿Cómo hacerlo?
 
-Así evitarás tener que reconfigurar tu dispositivo en LightBurn si cambia la IP.
+- Entra a la configuración de tu módem/router (normalmente accediendo a `192.168.0.1` o `192.168.1.1` desde un navegador).
+- Busca la sección de **DHCP** o **Asignación de IP Estática** o en LAN listda de dispositivos, o busca como hacerlo segun tu modem o router.
+- Ubica tu Raspberry Pi en la lista de dispositivos conectados, debe estar con el mismo nombre de hostname que configuraste al crear la imagen del Raspberry ejemplo grblink.
+- Reserva su IP actual o asigna una IP fija basada en su **MAC Address** (dirección física de red).
+
+📌 Cada marca de módem tiene su propio menú, puedes buscar en Google:  
+**\"Cómo reservar IP estática [marca de tu modem]\"**  
+(Ejemplo: \"Cómo reservar IP estática en modem Telmex\")
 
 ---
 
