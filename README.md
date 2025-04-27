@@ -27,7 +27,7 @@
 
 ## 🖥️ Dispositivos Compatibles
 
-- Raspberry Pi 3B, 3B+, 4, Zero 2 W
+- Raspberry Pi 3B, 3B+, 4, Zero W Zero 2 W etc 
 - Dispositivos que utilicen protocolo GRBL, como:
   - Máquinas de grabado láser de diodo
   - Máquinas láser de CO₂ (con GRBL)
