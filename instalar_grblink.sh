@@ -29,39 +29,6 @@ connection: &s30
   connector: serialdev,/dev/ttyUSB0,115200n81,local
 EOF'
 
-# Configurar rc.local si no existe
-if [ ! -f /etc/rc.local ]; then
-sudo bash -c 'cat > /etc/rc.local <<EOF
-#!/bin/bash
-[ ! -e /dev/vcio ] && mknod /dev/vcio c 100 0
-chmod 666 /dev/vcio
-exit 0
-EOF'
-fi
-sudo chmod +x /etc/rc.local
-
-# Servicio para rc-local
-sudo bash -c 'cat > /etc/systemd/system/rc-local.service <<EOF
-[Unit]
-Description=/etc/rc.local Compatibility
-ConditionPathExists=/etc/rc.local
-
-[Service]
-Type=forking
-ExecStart=/etc/rc.local start
-TimeoutSec=0
-StandardOutput=journal+console
-RemainAfterExit=yes
-GuessMainPID=no
-
-[Install]
-WantedBy=multi-user.target
-EOF'
-
-# ---------------------------
-# Agregado para Control Manual del Láser
-# ---------------------------
-
 echo "✅ Ajustando permisos para acceso a /dev/ttyUSB0..."
 
 # Asegurar que www-data esté en el grupo 'dialout' para acceso serial
@@ -70,22 +37,35 @@ usermod -a -G dialout www-data
 # Opcional pero recomendado: Instalar 'stty' si no está
 apt-get install -y coreutils
 
-# Crear reglas UDEV opcionales si quieres asegurar que siempre sea /dev/ttyUSB0
-# (esto lo podemos hacer si en pruebas ves que cambia a ttyUSB1, ttyUSB2, etc.)
-# Por ahora no es obligatorio.
-
 echo "✅ Permisos configurados para acceso serial."
 
-
-
 # ---------------------------
-# Fin de agregado
+# Corrección moderna: Servicio para asegurar /dev/vcio
 # ---------------------------
 
+echo "🚀 Configurando servicio grblink-vcio..."
 
-# Habilitar servicios
-sudo systemctl enable rc-local
-sudo systemctl start rc-local
+sudo bash -c 'cat > /etc/systemd/system/grblink-vcio.service <<EOF
+[Unit]
+Description=Crear dispositivo /dev/vcio para medición de temperatura
+DefaultDependencies=no
+After=sysinit.target local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c '\''if [ ! -e /dev/vcio ]; then mknod /dev/vcio c 100 0; chmod 666 /dev/vcio; fi'\'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF'
+
+# Recargar systemd y habilitar servicio nuevo
+sudo systemctl daemon-reload
+sudo systemctl enable grblink-vcio.service
+sudo systemctl start grblink-vcio.service
+
+# Habilitar servicios principales
 sudo systemctl enable ser2net
 sudo systemctl restart ser2net
 sudo systemctl restart apache2
