@@ -10,7 +10,7 @@
 ![Control del Dispositivo](screenshotcontrol.png)
 
 
-## 📸 Vista de la Interfaz
+## 📸 Diagrama
 ![Diagrama de conexion](diagrama.png)
 
 
